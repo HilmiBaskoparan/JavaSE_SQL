@@ -8,6 +8,7 @@ import java.util.Date;
 // LOMBOK
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Log4j2
