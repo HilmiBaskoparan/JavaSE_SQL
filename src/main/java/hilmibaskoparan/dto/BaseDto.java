@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-public class BaseDto {
+public abstract class BaseDto {
 
     private Long id;
     private Date createDate;

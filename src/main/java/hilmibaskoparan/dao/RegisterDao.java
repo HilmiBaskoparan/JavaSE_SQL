@@ -16,7 +16,7 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
 
     // CREATE
     @Override
-    public void create(RegisterDto registerDto) {
+    public void create(RegisterDto registerDto) throws SQLException, ClassNotFoundException{
         try (Connection connection = getInterfaceConnection()){
             // Connection Transaction Öncelikle Kapatmak
             connection.setAutoCommit(false);
@@ -40,6 +40,7 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -71,6 +72,7 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -98,6 +100,7 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -127,6 +130,7 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

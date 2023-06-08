@@ -36,11 +36,11 @@ public class DatabaseConnection extends DatabaseInformation{
     private DatabaseConnection() {
         try {
             Class.forName(forNameData);
-            log.info("Driver is loaded");
+            // log.info("Driver is loaded");
 
             // connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog", "root", "root");
             connection = DriverManager.getConnection(url, userName, password);
-            log.info("Database Connection is Successful");
+            //log.info("Database Connection is Successful");
         } catch (Exception exception){
             exception.printStackTrace();
             log.error(DatabaseConnection.class + " Database Connection or Driver is Failed : " + exception);
@@ -50,7 +50,7 @@ public class DatabaseConnection extends DatabaseInformation{
     // Bu Class'ı Dış Dünyaya Bağlayan Kapı
     public static DatabaseConnection getInstance() {
         try {
-            if (instance == null && instance.getConnection().isClosed()){
+            if (instance == null || instance.getConnection().isClosed()){
                 instance = new DatabaseConnection();
             }
         } catch (SQLException sqlException){
@@ -64,7 +64,7 @@ public class DatabaseConnection extends DatabaseInformation{
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        DatabaseConnection databaseConnection=new DatabaseConnection();
+        DatabaseConnection databaseConnection = new DatabaseConnection();
     }
 
 }

@@ -3,7 +3,7 @@ package hilmibaskoparan.database;
 import lombok.Data;
 
 @Data
-public abstract class DatabaseInformation {
+public class DatabaseInformation {
 
     private String url;
     private String userName;
