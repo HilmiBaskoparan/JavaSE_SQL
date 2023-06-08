@@ -18,6 +18,9 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
     @Override
     public void create(RegisterDto registerDto) {
         try (Connection connection = getInterfaceConnection()){
+            // Connection Transaction Öncelikle Kapatmak
+            connection.setAutoCommit(false);
+
             // INSERT
             String query = "insert into blog.register (name, surname, email, password) values (?,?,?,?);";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -30,8 +33,10 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0){
                 log.info(RegisterDto.class + " INSERTION SUCCESSFUL");
+                connection.commit();    // Transaction başarılıysa, işlem devam etsin
             } else {
                 log.info(RegisterDto.class + " INSERTION FAILED");
+                connection.rollback();  // Transaction başarısızsa, işlem devam etmesin
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,6 +48,9 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
     @Override
     public void update(RegisterDto registerDto) {
         try (Connection connection = getInterfaceConnection()){
+            // Connection Transaction Öncelikle Kapatmak
+            connection.setAutoCommit(false);
+
             // UPDATE
             String query = "update blog.register set name=?, surname=?, email=?, password=? where id=?";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -56,8 +64,10 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0){
                 log.info(RegisterDto.class + " UPDATE SUCCESSFUL");
+                connection.commit();    // Transaction başarılıysa, işlem devam etsin
             } else {
                 log.info(RegisterDto.class + " UPDATE FAILED");
+                connection.rollback();  // Transaction başarısızsa, işlem devam etmesin
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,6 +79,9 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
     @Override
     public void delete(RegisterDto registerDto) {
         try (Connection connection = getInterfaceConnection()){
+            // Connection Transaction Öncelikle Kapatmak
+            connection.setAutoCommit(false);
+
             // DELETE
             String query = "delete from blog.register where id=?";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -78,8 +91,10 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
                 log.info(RegisterDto.class + " DELETE SUCCESSFUL");
+                connection.commit();    // Transaction başarılıysa, işlem devam etsin
             } else {
                 log.info(RegisterDto.class + " DELETE FAILED");
+                connection.rollback();  // Transaction başarısızsa, işlem devam etmesin
             }
         } catch (SQLException e) {
             e.printStackTrace();
