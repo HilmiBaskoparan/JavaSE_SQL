@@ -14,4 +14,6 @@ public interface IRegisterController {
     public void delete(RegisterDto registerDto);
 
     public ArrayList<RegisterDto> list();
+
+    public RegisterDto findById(Long id);
 }

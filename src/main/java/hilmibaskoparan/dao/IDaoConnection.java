@@ -13,6 +13,7 @@ public interface IDaoConnection <T> {
     public void update(T t);
     public void delete(T t);
     public ArrayList<T> list();
+    public T findById(Long id);
 
     // Interface'de Default ile Gövdeli Fonksiyon yazabiliriz.
     default Connection getInterfaceConnection() throws SQLException, ClassNotFoundException {

@@ -2,7 +2,6 @@ package hilmibaskoparan.controller;
 
 import hilmibaskoparan.dao.RegisterDao;
 import hilmibaskoparan.dto.RegisterDto;
-import org.springframework.stereotype.Controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,5 +32,10 @@ public class RegisterControllerImpl implements IRegisterController {
     @Override
     public ArrayList<RegisterDto> list() {
         return registerDao.list();
+    }
+
+    @Override
+    public RegisterDto findById(Long id) {
+        return registerDao.findById(id);
     }
 }

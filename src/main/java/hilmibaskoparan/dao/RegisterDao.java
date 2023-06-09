@@ -1,6 +1,7 @@
 package hilmibaskoparan.dao;
 
 import hilmibaskoparan.dto.RegisterDto;
+import hilmibaskoparan.exception.ResourceNotFoundException;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -137,4 +138,30 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
         return registerDtoArrayList;
     }
 
+    @Override
+    public RegisterDto findById(Long id) {
+        RegisterDto registerDto = new RegisterDto();
+
+        try (Connection connection = getInterfaceConnection()){
+            String query = "select * from blog.register where id=" + id;
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                registerDto = new RegisterDto();
+                registerDto.setId(resultSet.getLong("id"));
+                registerDto.setName(resultSet.getString("name"));
+                registerDto.setSurname(resultSet.getString("surname"));
+                registerDto.setEmail(resultSet.getString("email"));
+                registerDto.setPassword(resultSet.getString("password"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(registerDto.getId() == null){
+            throw new ResourceNotFoundException(id + " didn't find.");
+        }
+        return registerDto;
+    }
 }
