@@ -123,13 +123,13 @@ public class RegisterDao implements IDaoConnection<RegisterDto> {
                 registerDto = new RegisterDto();
                 registerDto.setId(resultSet.getLong("id"));
                 registerDto.setName(resultSet.getString("name"));
-                registerDto.setSurname(resultSet.getString("name"));
-                registerDto.setEmail(resultSet.getString("name"));
-                registerDto.setPassword(resultSet.getString("name"));
+                registerDto.setSurname(resultSet.getString("surname"));
+                registerDto.setEmail(resultSet.getString("email"));
+                registerDto.setPassword(resultSet.getString("password"));
                 registerDtoArrayList.add(registerDto);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sql) {
+            sql.printStackTrace();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
