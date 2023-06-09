@@ -32,6 +32,31 @@ public class My_SqlCommands {
 
     -- DELETE
     delete from blog.register where id=1;
+
+    -- Select
+     SELECT * FROM blog.register;
+
+     -- Count
+     select count(*) from blog.register;
+
+     -- find
+     select * from blog.register where id =1;
+
+     -- find sadece name
+     select name from blog.register where id = 1;
+
+     -- #### LIKE ###########################################################################
+     -- like
+     -- name kolonunda p ile başlayan değerleri bul
+     select * from blog.register where name like 'H%';
+     -- name kolonunda p ile biten değerleri bul
+     select * from blog.register where name like '%t';
+     -- name kolonunda ikinci harfi a olan
+     select * from blog.register where name like '_a%';
+     -- name kolonunda hmt geçenolan
+     select * from blog.register where name like '[hmt]%';
+     -- name ve surname
+     select * from blog.register where name like 'H%' or surname like 'm%'
     */
 
 }
